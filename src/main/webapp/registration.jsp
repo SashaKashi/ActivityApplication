@@ -11,23 +11,6 @@
 </head>
 <body>
 
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark"
-         style="background-color: white">
-        <%--        <div>--%>
-        <%--            <a class="navbar-brand"> Registration </a>--%>
-        <%--        </div>--%>
-
-        <ul class="navbar-nav">
-            <li>
-                <a href="<%=request.getContextPath()%>/list">
-                    Users List
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<br>
 <div class="container col-md-5">
     <div class="card">
         <div class="card-body">
