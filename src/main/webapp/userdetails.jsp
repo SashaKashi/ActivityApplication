@@ -52,6 +52,7 @@
             </thead>
             <tbody>
             <!--   for (Todo todo: todos) {  -->
+            <%--@elvariable id="listUser" type="java.util.List"--%>
             <c:forEach var="user" items="${listUser}">
 
                 <tr>

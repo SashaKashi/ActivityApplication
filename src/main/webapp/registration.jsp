@@ -14,14 +14,14 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark"
          style="background-color: white">
-        <div>
-            <a class="navbar-brand"> Registration </a>
-        </div>
+        <%--        <div>--%>
+        <%--            <a class="navbar-brand"> Registration </a>--%>
+        <%--        </div>--%>
 
         <ul class="navbar-nav">
             <li>
                 <a href="<%=request.getContextPath()%>/list">
-                Users
+                    Users List
                 </a>
             </li>
         </ul>
@@ -49,26 +49,27 @@
                         </h2>
                     </caption>
 
+                    <%--@elvariable id="user" type=""--%>
                     <c:if test="${user != null}">
                         <input type="hidden" name="id" value="<c:out value='${user.id}' />" />
                     </c:if>
 
                     <fieldset class="form-group">
                         <label>First Name</label> <input type="text"
-                                                        value="<c:out value='${user.firstName}' />" class="form-control"
-                                                        name="firstName">
+                                                         value="<c:out value='${user.firstName}' />" class="form-control"
+                                                         name="firstName">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>Last Name</label> <input type="text"
-                                                         value="<c:out value='${user.lastName}' />" class="form-control"
-                                                         name="lastName">
+                                                        value="<c:out value='${user.lastName}' />" class="form-control"
+                                                        name="lastName">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>User Age</label> <input type="text"
-                                                           value="<c:out value='${user.age}' />" class="form-control"
-                                                           name="age">
+                                                       value="<c:out value='${user.age}' />" class="form-control"
+                                                       name="age">
                     </fieldset>
 
                     <button type="submit" class="btn btn-primary">Save</button>
