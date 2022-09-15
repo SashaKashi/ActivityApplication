@@ -9,7 +9,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
 </head>
-<body bgcolor="teal" text="#ffffff">
+<body>
 
 <div class="row">
 
@@ -35,8 +35,8 @@
             </tr>
             </thead>
             <tbody>
-            <%--@elvariable id="listUser" type="java.util.List"--%>
-            <c:forEach var="user" items="${listUser}">
+            <%--@elvariable id="users" type="java.util.List"--%>
+            <c:forEach var="user" items="${users}">
 
                 <tr>
                     <td><c:out value="${user.id}" /></td>

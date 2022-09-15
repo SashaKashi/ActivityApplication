@@ -1,8 +1,5 @@
 package dao;
-
-import Utils.Util;
 import entities.User;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,25 +8,22 @@ import java.util.List;
 
 public class UserDAO {
 
-    private static final String SELECT_USER_BY_ID = "select id,first_name,last_name, age from users where id =?;";
-    private static final String SELECT_ALL_USERS = "select * from users;";
-    private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
-    private static final String UPDATE_USERS_SQL = "UPDATE users SET first_name = ?, last_name= ?, age =? where id = ?;";
-    private static final String INSERT_USERS_SQL = "INSERT INTO users" +
-            "  (first_name, last_name, age) VALUES " +
-            " (?, ?, ?);";
+    private static final String SELECT_USER_BY_ID = "SELECT id,first_name,last_name,age FROM users WHERE id =?;";
+    private static final String SELECT_ALL_USERS = "SELECT * FROM users;";
+    private static final String DELETE_USER = "DELETE FROM users WHERE id = ?;";
+    private static final String UPDATE_USER = "UPDATE users SET first_name = ?, last_name= ?, age =? where id = ?;";
+    private static final String INSERT_USER = "INSERT INTO users (first_name, last_name, age) VALUES (?, ?, ?);";
+
 
     public static int registerUser(User user, Connection conn) throws SQLException {
 
         int result = 0;
 
-        PreparedStatement stm = conn.prepareStatement(INSERT_USERS_SQL);
+        PreparedStatement stm = conn.prepareStatement(INSERT_USER);
         int i = 1;
         stm.setString(i++, user.getFirstName());
         stm.setString(i++, user.getLastName());
         stm.setInt(i++, user.getAge());
-
-        System.out.println(stm);
 
         result = stm.executeUpdate();
 
@@ -81,7 +75,7 @@ public class UserDAO {
     public static boolean deleteUser(Connection conn, int id) throws SQLException {
         boolean userDeleted;
 
-        PreparedStatement stm = conn.prepareStatement(DELETE_USERS_SQL);
+        PreparedStatement stm = conn.prepareStatement(DELETE_USER);
 
         int i = 1;
 
@@ -93,7 +87,7 @@ public class UserDAO {
 
     public static boolean updateUser(User user, Connection conn) throws SQLException {
         boolean rowUpdated;
-        PreparedStatement statement = conn.prepareStatement(UPDATE_USERS_SQL);
+        PreparedStatement statement = conn.prepareStatement(UPDATE_USER);
         System.out.println(statement);
             int i = 1;
             statement.setString(i++, user.getFirstName());
