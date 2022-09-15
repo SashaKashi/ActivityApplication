@@ -11,25 +11,7 @@
 </head>
 <body>
 
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark"
-         style="background-color: white">
-        <div>
-            <a class="navbar-brand">
-                Users List
-            </a>
-        </div>
-
-<%--        <ul class="navbar-nav">--%>
-<%--            <li><a href="<%=request.getContextPath()%>/list"--%>
-<%--                   class="nav-link">Users</a></li>--%>
-<%--        </ul>--%>
-    </nav>
-</header>
-<br>
-
 <div class="row">
-    <!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
 
     <div class="container">
         <h3 class="text-center">List of Users</h3>
@@ -47,11 +29,12 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Age</th>
-                <th>Actions</th>
+                <th>Action</th>
+                <th>Action</th>
+
             </tr>
             </thead>
             <tbody>
-            <!--   for (Todo todo: todos) {  -->
             <%--@elvariable id="listUser" type="java.util.List"--%>
             <c:forEach var="user" items="${listUser}">
 
@@ -60,12 +43,10 @@
                     <td><c:out value="${user.firstName}" /></td>
                     <td><c:out value="${user.lastName}" /></td>
                     <td><c:out value="${user.age}" /></td>
-                    <td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp; <a
-                                href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+                    <td><a href="edit?id=<c:out value='${user.id}' />">Edit</a></td>
+                    <td><a href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
                 </tr>
             </c:forEach>
-            <!-- } -->
             </tbody>
 
         </table>
