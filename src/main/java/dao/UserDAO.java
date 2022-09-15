@@ -5,6 +5,8 @@ import entities.User;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class UserDAO {
@@ -70,6 +72,8 @@ public class UserDAO {
             user.setAge(rs.getInt("age"));
             list.add(user);
         }
+        Comparator <User> comparator = (User u1, User u2)-> {return (u1.getId()-u2.getId());};
+        Collections.sort(list, comparator);
         return list;
 
     }
