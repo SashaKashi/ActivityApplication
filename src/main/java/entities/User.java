@@ -1,7 +1,7 @@
 package entities;
-import lombok.Data;
 
 public class User {
+
     private int id;
     private String firstName;
     private String lastName;
@@ -37,5 +37,15 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

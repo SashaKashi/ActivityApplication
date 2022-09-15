@@ -35,17 +35,17 @@ public class UserDAO {
         User user = new User();
 
         PreparedStatement preparedStatement = conn.prepareStatement(SELECT_USER_BY_ID);
-            preparedStatement.setInt(1, id);
-            System.out.println(preparedStatement);
+        preparedStatement.setInt(1, id);
+        System.out.println(preparedStatement);
 
-            ResultSet rs = preparedStatement.executeQuery();
+        ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                user.setId(id);
-                user.setFirstName(rs.getString("first_name"));
-                user.setLastName(rs.getString("last_name"));
-                user.setAge(rs.getInt("age"));
-            }
+        while (rs.next()) {
+            user.setId(id);
+            user.setFirstName(rs.getString("first_name"));
+            user.setLastName(rs.getString("last_name"));
+            user.setAge(rs.getInt("age"));
+        }
 
         return user;
     }
@@ -66,41 +66,29 @@ public class UserDAO {
             user.setAge(rs.getInt("age"));
             list.add(user);
         }
-        Comparator <User> comparator = (User u1, User u2)-> {return (u1.getId()-u2.getId());};
+        Comparator <User> comparator = Comparator.comparingInt(User::getId);
         Collections.sort(list, comparator);
         return list;
 
     }
 
     public static boolean deleteUser(Connection conn, int id) throws SQLException {
-        boolean userDeleted;
 
         PreparedStatement stm = conn.prepareStatement(DELETE_USER);
 
-        int i = 1;
-
-        stm.setInt(i++, id);
-        userDeleted = stm.executeUpdate() > 0;
-        return userDeleted;
-
+        stm.setInt(1, id);
+        return stm.executeUpdate() > 0;
     }
 
     public static boolean updateUser(User user, Connection conn) throws SQLException {
-        boolean rowUpdated;
         PreparedStatement statement = conn.prepareStatement(UPDATE_USER);
-        System.out.println(statement);
-            int i = 1;
-            statement.setString(i++, user.getFirstName());
-            statement.setString(i++, user.getLastName());
-            statement.setInt(i++, user.getAge());
-            statement.setInt(i++, user.getId());
+        int i = 1;
+        statement.setString(i++, user.getFirstName());
+        statement.setString(i++, user.getLastName());
+        statement.setInt(i++, user.getAge());
+        statement.setInt(i++, user.getId());
 
-            System.out.println(statement);
-
-            rowUpdated = statement.executeUpdate() > 0;
-
-
-        return rowUpdated;
+        return statement.executeUpdate() > 0;
     }
 
     private static void printSQLException(SQLException ex) {
