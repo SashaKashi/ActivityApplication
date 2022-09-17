@@ -2,7 +2,6 @@ package dao;
 import entities.User;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -15,26 +14,23 @@ public class UserDAO {
     private static final String INSERT_USER = "INSERT INTO users (first_name, last_name, age) VALUES (?, ?, ?);";
 
 
-    public static int registerUser(User user, Connection conn) throws SQLException {
+    public static int registerUser(User user, Connection con) throws SQLException {
 
-        int result = 0;
+        PreparedStatement stm = con.prepareStatement(INSERT_USER);
+        stm.setString(1, user.getFirstName());
+        stm.setString(2, user.getLastName());
+        stm.setInt(3, user.getAge());
 
-        PreparedStatement stm = conn.prepareStatement(INSERT_USER);
-        int i = 1;
-        stm.setString(i++, user.getFirstName());
-        stm.setString(i++, user.getLastName());
-        stm.setInt(i++, user.getAge());
-
-        result = stm.executeUpdate();
-
+        int result = stm.executeUpdate();
         return result;
     }
 
 
-    public static User selectUser(int id, Connection conn) throws SQLException {
+    public static User selectUser(int id, Connection con) throws SQLException {
+
         User user = new User();
 
-        PreparedStatement preparedStatement = conn.prepareStatement(SELECT_USER_BY_ID);
+        PreparedStatement preparedStatement = con.prepareStatement(SELECT_USER_BY_ID);
         preparedStatement.setInt(1, id);
         System.out.println(preparedStatement);
 
@@ -50,9 +46,10 @@ public class UserDAO {
         return user;
     }
 
-    public static List<User> getUserList(Connection conn) throws SQLException {
 
-        PreparedStatement stm = conn.prepareStatement(SELECT_ALL_USERS);
+    public static List<User> getUserList(Connection con) throws SQLException {
+
+        PreparedStatement stm = con.prepareStatement(SELECT_ALL_USERS);
 
         ResultSet rs = stm.executeQuery();
 
@@ -67,26 +64,24 @@ public class UserDAO {
             list.add(user);
         }
         Comparator <User> comparator = Comparator.comparingInt(User::getId);
-        Collections.sort(list, comparator);
+        list.sort(comparator);
         return list;
 
     }
 
-    public static boolean deleteUser(Connection conn, int id) throws SQLException {
+    public static boolean deleteUser(Connection con, int id) throws SQLException {
 
-        PreparedStatement stm = conn.prepareStatement(DELETE_USER);
-
+        PreparedStatement stm = con.prepareStatement(DELETE_USER);
         stm.setInt(1, id);
         return stm.executeUpdate() > 0;
     }
 
-    public static boolean updateUser(User user, Connection conn) throws SQLException {
-        PreparedStatement statement = conn.prepareStatement(UPDATE_USER);
-        int i = 1;
-        statement.setString(i++, user.getFirstName());
-        statement.setString(i++, user.getLastName());
-        statement.setInt(i++, user.getAge());
-        statement.setInt(i++, user.getId());
+    public static boolean updateUser(User user, Connection con) throws SQLException {
+        PreparedStatement statement = con.prepareStatement(UPDATE_USER);
+        statement.setString(1, user.getFirstName());
+        statement.setString(2, user.getLastName());
+        statement.setInt(3, user.getAge());
+        statement.setInt(4, user.getId());
 
         return statement.executeUpdate() > 0;
     }
