@@ -1,5 +1,5 @@
 package Controllers.Commands;
-import dao.UserDAO;
+import dao.ActivityDAO;
 import entities.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +17,7 @@ public class CommandUpdateUser implements CommandInterface{
         updatedUser.setFirstName(request.getParameter("firstName"));
         updatedUser.setLastName(request.getParameter("lastName"));
         updatedUser.setAge(Integer.parseInt(request.getParameter("age")));
-        UserDAO.updateUser(updatedUser, con);
+        ActivityDAO.updateUser(updatedUser, con);
         response.sendRedirect("list");
     }
 }

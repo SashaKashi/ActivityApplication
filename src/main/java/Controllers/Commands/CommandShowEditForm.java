@@ -1,5 +1,5 @@
 package Controllers.Commands;
-import dao.UserDAO;
+import dao.ActivityDAO;
 import entities.User;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ public class CommandShowEditForm implements CommandInterface{
     @Override
     public void executeCommand(HttpServletRequest request, HttpServletResponse response, Connection con) throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        User userById = UserDAO.selectUser(id, con);
+        User userById = ActivityDAO.selectUser(id, con);
         RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
         request.setAttribute("user", userById);
         try {

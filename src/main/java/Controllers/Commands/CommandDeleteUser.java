@@ -1,5 +1,5 @@
 package Controllers.Commands;
-import dao.UserDAO;
+import dao.ActivityDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -12,7 +12,7 @@ public class CommandDeleteUser implements CommandInterface{
     public void executeCommand(HttpServletRequest request, HttpServletResponse response, Connection con)
                                throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        UserDAO.deleteUser(con, id);
+        ActivityDAO.deleteUser(con, id);
         response.sendRedirect("list");
     }
 }

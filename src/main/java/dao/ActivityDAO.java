@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class UserDAO {
+public class ActivityDAO {
 
     private static final String SELECT_USER_BY_ID = "SELECT id,first_name,last_name,age FROM users WHERE id =?;";
     private static final String SELECT_ALL_USERS = "SELECT * FROM users;";

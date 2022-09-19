@@ -1,5 +1,5 @@
 package Controllers.Commands;
-import dao.UserDAO;
+import dao.ActivityDAO;
 import entities.User;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ public class CommandListUser implements CommandInterface{
     @Override
     public void executeCommand(HttpServletRequest request, HttpServletResponse response, Connection con) throws SQLException, IOException {
         con.setTransactionIsolation(TRANSACTION_READ_COMMITTED);
-        List<User> users = UserDAO.getUserList(con);
+        List<User> users = ActivityDAO.getUserList(con);
         request.setAttribute("users", users);
         RequestDispatcher dispatcher = request.getRequestDispatcher("userdetails.jsp");
         try {
