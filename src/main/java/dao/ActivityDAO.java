@@ -7,11 +7,11 @@ import java.util.List;
 
 public class ActivityDAO {
 
-    private static final String SELECT_USER_BY_ID = "SELECT id,first_name,last_name,age FROM users WHERE id =?;";
-    private static final String SELECT_ALL_USERS = "SELECT * FROM users;";
-    private static final String DELETE_USER = "DELETE FROM users WHERE id = ?;";
-    private static final String UPDATE_USER = "UPDATE users SET first_name = ?, last_name= ?, age =? where id = ?;";
-    private static final String INSERT_USER = "INSERT INTO users (first_name, last_name, age) VALUES (?, ?, ?);";
+    private static final String SELECT_USER_BY_ID = "SELECT id,first_name,last_name,age FROM activity WHERE id =?;";
+    private static final String SELECT_ALL_USERS = "SELECT * FROM activity;";
+    private static final String DELETE_USER = "DELETE FROM activity WHERE id = ?;";
+    private static final String UPDATE_USER = "UPDATE activity SET first_name = ?, last_name= ?, age =? where id = ?;";
+    private static final String INSERT_USER = "INSERT INTO activity (first_name, last_name, age) VALUES (?, ?, ?);";
 
 
     public static int registerUser(User user, Connection con) throws SQLException {
